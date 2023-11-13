@@ -1,0 +1,67 @@
+version: '1.1'
+
+services:
+  expressbackend:
+    image: expressbackend
+    build:
+      context: ./Express-backend
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      # PORT: $PORT
+      # SECRET_KEY_JWT: $SECRET_KEY_JWT
+      # MONGO_URI: $MONGO_URI
+      # SIGNATURE_COOKIE: $SIGNATURE_COOKIE
+      # EMAIL_USER: $EMAIL_USER
+      # EMAIL_PASS: $EMAIL_PASS
+      # GOOGLE_LOGIN_CLIENT_ID: $GOOGLE_LOGIN_CLIENT_ID
+      # GOOGLE_LOGIN_CLIENT_SECRET: $GOOGLE_LOGIN_CLIENT_SECRET
+    volumes:
+      - ./Express-backend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 8080:8080
+    command: npm run dev-mongo-docker
+    networks:
+      - ngrok_test_network
+
+  reactfrontend:
+    image: reactfrontend
+    build:
+      context: ./React-frontend
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      # PORT: $PORT
+      # SECRET_KEY_JWT: $SECRET_KEY_JWT
+      # MONGO_URI: $MONGO_URI
+      # SIGNATURE_COOKIE: $SIGNATURE_COOKIE
+      # EMAIL_USER: $EMAIL_USER
+      # EMAIL_PASS: $EMAIL_PASS
+      # GOOGLE_LOGIN_CLIENT_ID: $GOOGLE_LOGIN_CLIENT_ID
+      # GOOGLE_LOGIN_CLIENT_SECRET: $GOOGLE_LOGIN_CLIENT_SECRET
+    volumes:
+      - ./React-frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 5173:5173
+    command: npm run dev
+    networks:
+      - ngrok_test_network
+
+  # ngrok:
+  #   image: ngrok/ngrok:alpine
+  #   environment:
+  #     NGROK_AUTHTOKEN: 2Y7uDuIyFmCvbsffD0KTUldsj3q_57w8RSqs35Nv5yqoZ4N4H
+  #   command: ngrok http expressbackend:8080
+  #   depends_on:
+  #     - expressbackend
+  #   networks:
+  #     - ngrok_test_network:
+
+    # ports:
+    #   - 4040:4040  # Puerto para el panel de control de ngrok
+  
+networks:
+  ngrok_test_network:
+    driver: bridge

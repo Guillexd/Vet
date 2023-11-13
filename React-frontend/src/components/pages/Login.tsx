@@ -8,6 +8,7 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { faPaw } from '@fortawesome/free-solid-svg-icons'
 import SpinerToast from '../presentationals/SpinerToast'
 import styled from 'styled-components'
+import { uri } from '../../utils/utils'
 
 type InitialState = {
   email: string
@@ -93,7 +94,7 @@ export default function Login() {
   }
 
   const redirectToGoogleSSO = async () => {
-    const googleLoginURL = 'http://localhost:8080/user/login-google';
+    const googleLoginURL = `${uri}/user/login-google`;
     const width = 500;
     const height = 600;
 
@@ -110,7 +111,7 @@ export default function Login() {
   useEffect(() => {
     // Agrega un listener para escuchar los mensajes enviados desde la ventana emergente
     const messageListener = (event: any) => {
-      if (event.origin === 'http://localhost:8080') {
+      if (event.origin === uri) {
         // Verifica que el mensaje sea válido y contiene el token de acceso
         if (event.data && event.data.token) {
           const accessToken = event.data.token;
@@ -167,7 +168,7 @@ export default function Login() {
               <FontAwesomeIcon icon={faPaw} />
             </Logo>
             <Text>
-              <h1 className='h3 mb-3 fw-normal'>Iniciar sesión en PetHouse</h1>
+              <h1 className='h3 mb-3 fw-normal'>Iniciar sesión en Vet</h1>
             </Text>
 
             <div className='form-floating'>

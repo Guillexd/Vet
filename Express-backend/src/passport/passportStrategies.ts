@@ -6,6 +6,8 @@ import env from "../utils/env";
 import { getUserByEmail } from "../services/user.service";
 const cookieExtractorTokenJwt = (req: Request) => {
     const token = req.signedCookies.tokenJwt
+    console.log(req);
+    console.log('El token  xd:' + token);
     return token
 }
 

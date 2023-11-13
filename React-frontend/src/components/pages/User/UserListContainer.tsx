@@ -57,9 +57,11 @@ export default function UserListContainer() {
   const { data, loading } = useFetchData<DataWithDocs<UserI>>(`/user?page=${page}&filter=${filter}&inputFilter=${debounceValue}`, [page, helper])
 
   useEffect(()=>{
-    setPage(1)
-    setLimit(6)
-    setHelper((prev)=>prev+1)
+    if(!loading) {
+      setPage(1)
+      setLimit(6)
+      setHelper((prev)=>prev+1)
+    }
   }, [debounceValue])
 
   useEffect(()=>{

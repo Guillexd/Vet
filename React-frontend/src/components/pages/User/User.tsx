@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { fechaFormato, fechaString, showSWToDelete } from '../../../utils/utils'
 import noUser from '../../../assets/no-user.jpg'
 import { InitialState } from './CreateUser'
+import { uri } from '../../../utils/utils'
 
 const Body = styled.div`
   background-color: ${props => props.theme.colors.bgColorCard};
@@ -11,7 +12,7 @@ const Body = styled.div`
 `
 
 export default function User({ user, setOption, setUser, setRenderUsers } : { user: UserI, setOption: Dispatch<SetStateAction<string>>, setUser: Dispatch<SetStateAction<InitialState>>, setRenderUsers: Dispatch<SetStateAction<UserI[]>> }) {
-  const serverUrl: string = 'http://localhost:8080'
+
   const handleDeleteUser = ( email: string ) => {
     showSWToDelete<UserI[]>('¿Quieres eliminar este usuario?', '/user/delete-user', { email }, '/user', setRenderUsers)
   }
@@ -19,7 +20,7 @@ export default function User({ user, setOption, setUser, setRenderUsers } : { us
   return (
     <div className='col'>
       <div className='card shadow-sm'>
-          <img src={user.profile_image ? serverUrl + `/profile_images/${user.profile_image}` : noUser} alt={user.name} style={{height: '40vh', objectFit: 'cover'} } />
+          <img src={user.profile_image ? `${uri}/profile_images/${user.profile_image}` : noUser} alt={user.name} style={{height: '40vh', objectFit: 'cover'} } />
         <Body>
           <div className='card-body'>
             <h3 className='text-center'>{user.nick_name || `${user.name} ${user.last_name}`}</h3>

@@ -5,6 +5,7 @@ import UserRepository from "../repositories/user.repository"
 let userDao: UserFactory
 
 async function connectWithPersistence() {
+    console.log(env);
     
     switch (env.persistence) {
         case "MONGO": 

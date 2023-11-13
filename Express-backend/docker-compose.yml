@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  expressbackend:
+    image: expressbackend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      # PORT: $PORT
+      # SECRET_KEY_JWT: $SECRET_KEY_JWT
+      # MONGO_URI: $MONGO_URI
+      # SIGNATURE_COOKIE: $SIGNATURE_COOKIE
+      # EMAIL_USER: $EMAIL_USER
+      # EMAIL_PASS: $EMAIL_PASS
+      # GOOGLE_LOGIN_CLIENT_ID: $GOOGLE_LOGIN_CLIENT_ID
+      # GOOGLE_LOGIN_CLIENT_SECRET: $GOOGLE_LOGIN_CLIENT_SECRET
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 8080:8080
+    command: npm run dev-mongo-docker

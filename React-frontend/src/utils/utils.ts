@@ -3,7 +3,8 @@ import { DataWithDocs, fecthData } from './interface'
 import Swal from 'sweetalert2'
 import { Dispatch, SetStateAction } from 'react'
 
-const uri: string = 'http://localhost:8080'
+export const uri: string = 'http://localhost:8080'
+// export const uri: string = 'https://fe91-179-6-42-33.ngrok-free.app'
 
 export const fetchHelper = (method: string, url: string, body: object, file: boolean = false): Promise<fecthData> => {
   const options: any = {

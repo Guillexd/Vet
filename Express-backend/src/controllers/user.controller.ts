@@ -32,6 +32,7 @@ export async function getAllUsers(req: Request, res: Response) {
 export async function getOneUserByEmail(req: Request, res: Response) {
 
     const { email, password } = req.body
+    
     try {
         const user = await getUserByEmailToLogin(email, password)
         const message: Message = {

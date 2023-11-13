@@ -10,4 +10,5 @@ export default {
     email_pass: process.env.EMAIL_PASS,
     google_login_client_id: process.env.GOOGLE_LOGIN_CLIENT_ID,
     google_login_client_secret: process.env.GOOGLE_LOGIN_CLIENT_SECRET,
+    host: process.env.HOST,
 }

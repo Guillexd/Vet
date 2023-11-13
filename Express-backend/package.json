@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/app.ts",
-    "dev-mongo": "set PERSISTENCE=MONGO&& nodemon ./src/app.ts"
+    "start": "tsc &&  node ./build/app.js",
+    "dev-mongo": "set PERSISTENCE=MONGO&& nodemon src/app.ts",
+    "dev-mongo-docker": "export PERSISTENCE=MONGO&& nodemon src/app.ts",
+    "dev": "nodemon src/app.ts"
   },
   "keywords": [],
   "author": "",
